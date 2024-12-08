@@ -338,7 +338,7 @@ class Graph
        cout << endl;
       }
     }
-    
+
     int get_djik_node(int arr_1[], int arr_2[], bool arr_3[])//finds the next node with the minimum distance in Dijkstra's algorithm. 
     {
       int s_1 = 0;
@@ -423,3 +423,32 @@ class Graph
            temp = temp->next;
          }
       }
+
+      if (arr_dist[en] == 1000000) 
+      {
+        cout << "There is NO existent path between --> ";
+        cout << start;
+        cout << " <-- and --> ";
+        cout << end;
+        cout << " <--";
+        cout << endl;
+        return;
+      } 
+      
+      cout << "Emergency Vehicle is being routed..." << endl;
+      cout << "Emergency Vehicle path: ";
+      path_print_all(en, parent_num);
+    }
+
+    void path_print_all(int node, int parent_num[])//helper function to priny from source to target 
+    {
+      int nu = -1;
+      if (parent_num[node] == nu) 
+      {
+        cout << arr_labels[node];
+        return;
+      }
+      path_print_all(parent_num[node], parent_num);
+      cout << " -> ";
+      cout << arr_labels[node];
+    }      
