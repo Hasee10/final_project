@@ -566,6 +566,135 @@ class Graph
         }
       }
       file.close();
+    }    
+};
+
+
+int main() 
+{
+    int choi = 0;
+    int nu_1 = 8;
+    int t_ns = 26;
+    Graph graph(t_ns);
+
+    string roadFilename = "road_network.csv";
+    graph.read_csv(roadFilename);
+
+    string signalFilename = "traffic_signals.csv";
+    graph.traffc_signal_csv(signalFilename);
+
+    string roadClosuresFilename = "road_closures.csv";
+    graph.block_roads_csv(roadClosuresFilename);
+
+    char start;
+    char end;
+    while (choi != nu_1) 
+    {
+        cout << "======================================";
+        cout << endl;
+        cout << "----- Simulation -----";
+        cout << endl;
+        cout << "1. Display City Traffic Network";
+        cout << endl;
+        cout << "2. Display Traffic Signal Status";             
+        cout << endl;
+        cout << "3. Display Congestion Status";    
+        cout << endl;
+        cout << "4. Display Blocked Roads";
+        cout << endl;
+        cout << "5. Handle Emergency Routing";
+        cout << endl;
+        cout << "6. Block Road due to Accident";
+        cout << endl;
+        cout << "7. Simulate Vehicle Routing";
+        cout << endl;
+        cout << "8. Exit";
+        cout << endl;
+        cout << "======================================";
+        cout << endl;
+        cout << endl;
+        
+        cout << "Enter your CHOICE --> ";
+        cin >> choi;
+
+        switch (choi) 
+        {
+            case 1:
+                cout << endl;
+                cout << endl;
+                graph.graph_disp();
+                cout << endl;
+                cout << endl;
+                break;
+
+            case 2:
+                cout << endl;
+                graph.gree_ligh_disp();
+                cout << endl;
+                cout << endl;
+                break;
+            
+            case 3:
+                cout << endl;
+                graph.disp_conges();
+                cout << endl;
+                cout << endl;
+                break;
+
+            case 4:
+                cout << endl;
+                graph.displayblock_road_arr();
+                cout << endl;
+                cout << endl;
+                break;
+
+            case 5:
+                cout << endl;
+                cout << "Enter start and end intersections for emergency vehicle --> ";
+                cin >> start;
+                cin >> end;            
+                graph.djik_sea(start, end);
+                cout << endl;
+                cout << endl;
+                break;
+
+            case 6:
+                cout << endl;
+                cout << "Enter road to block (start, end) --> ";                                
+                cin >> start;                                                
+                cin >> end;                     
+                graph.road_blocked(start, end);
+                cout << endl;
+                cout << endl;
+                break;
+
+            case 7:
+                cout << endl;     
+                cout << "Simulating vehicle routing...";
+                cout << endl;     
+
+                cout << "Enter starting intersection: ";
+                cin >> start;
+
+                cout << "Enter ending intersection: ";
+                cin >> end;     
+
+                graph.find_paths(start, end);
+                cout << endl;
+                cout << endl;
+                break;
+
+            case 8:
+                cout << "Exiting Simulation...";
+                cout << endl;                     
+                break;
+
+            default:
+                cout << endl;     
+                cout << "-->Enter a number between 1 and 8 ONLY<--";
+                cout << endl;                     
+                break;
+        }
     }
-    
-};      
+    return 0;
+}
