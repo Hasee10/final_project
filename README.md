@@ -11,5 +11,5 @@ Visualize the city’s traffic network and status.
 Prerequisites
 Before running the program, ensure that you have the following installed on your system:
 
-C++ Compiler: I have a C++ compiler on ubuntu, but I normally use VScode
-CSV Files: You need the CSV files for traffic signal timings and road closure statuses. These files will be read by the program to update the traffic system.
+- C++ Compiler: I have a C++ compiler on ubuntu, but I normally use VScode
+- CSV Files: You need the CSV files for traffic signal timings and road closure statuses. These files will be read by the program to update the traffic system.
