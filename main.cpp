@@ -239,3 +239,35 @@ class Graph
       newNode->next = arr[a]->next;
       arr[a]->next = newNode;
     }
+
+        void road_blocked(char a, char b)//blocks a road between two nodes in the graph
+    {
+      int c = 0;
+      int d = 0;
+        
+      c = node_id(a);
+      d = node_id(b);
+      if (c == -1) 
+      {
+        cout << "Invalid road to block." << endl;
+        return;
+      }
+        
+      if (d == -1)
+      {
+        cout << "Invalid road to block." << endl;
+        return;
+      }        
+      block_road_arr[c][d] = true;//marks the road as blocked in the array
+      cout << "Road from ";
+      cout << a;
+      cout << " to ";
+      cout << b;
+      cout << " has been blocked";
+      cout << endl;
+    }
+
+    bool ro_blo(int from, int to)//checks if a road is blocked between two nodes. 
+    {
+        return block_road_arr[from][to];
+    }
