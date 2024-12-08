@@ -271,3 +271,70 @@ class Graph
     {
         return block_road_arr[from][to];
     }
+
+        void displayblock_road_arr()//displays all blocked roads in the graph. 
+    {
+      cout << "------ Blocked Roads ------";
+      cout << endl;
+      bool b = false;
+
+      for (int i = 0; i < num; i++) 
+      {
+        for (int j = 0; j < num; j++) 
+        {
+          if (block_road_arr[i][j]) 
+          {
+            cout << arr_labels[i];
+            cout << " to ";
+            cout << arr_labels[j];
+            cout << " is blocked";
+            cout << endl;
+            b = true;
+          }
+        }
+      }
+
+      if (b) 
+      {
+        cout << "";  
+      }
+        
+      else
+      {
+        cout << "No blocked roads.";
+        cout << endl;
+      }
+    }
+
+    void graph_disp() 
+    {
+      cout << "------ City Traffic Network ------";
+      cout << endl;
+      for (int i = 0; i < num; i++) 
+      {
+        cout << arr_labels[i];
+        cout << " -> ";
+        Node_graphs* temp = arr[i];
+        bool f = true;
+        while (temp -> next) 
+        {
+          if (f) 
+          {
+            cout << "";
+          }
+          
+          else
+          {
+            cout << ", ";
+          }
+          cout << "(";
+          cout << arr_labels[temp->next->id];
+          cout << ", ";
+          cout << temp->next->weight;
+          cout << ")";
+          f = false;
+          temp = temp->next;
+       }
+       cout << endl;
+      }
+    }
