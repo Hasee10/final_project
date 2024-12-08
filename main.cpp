@@ -467,4 +467,105 @@ class Graph
         cout << endl;
       }
     }
+    void find_paths(char a, char b)//Finds all paths between two nodes using DFS. 
+    {
+      bool arr_flag[26] = {false};
+      string path = "";
+      int t_w = 0;
+      int p_c = 0;
+      int st = 0;
+      int en = 0;
       
+      st = node_id(a);
+      en = node_id(b);
+
+      cout << "All possible paths from";
+      cout << endl;
+      cout << a;
+      cout << " to ";
+      cout << b;
+      cout << " are";
+      cout << endl;
+      find_path_help(st, en, arr_flag, path, t_w, p_c);
+
+      if (p_c == 0) 
+      {
+        cout << "No paths exist between ";
+        cout << a;
+        cout << " and ";
+        cout << b;
+        cout << endl;
+      }
+    }
+
+    void find_path_help(int c, int end, bool arr_flag[], string path, int t_w, int& p_c)//helper to find paths between two nodes. 
+    {
+      arr_flag[c] = true;
+      path = path + arr_labels[c];
+      path = path + " ";
+
+      if (c != end) 
+      {
+        cout << "";
+      }
+      
+      else
+      {
+        cout << "Path ";
+        cout << ++p_c;
+        cout << ": ";
+        cout << path;
+        cout << "| ";
+        cout << "Total Weight: ";
+        cout << t_w;
+        cout << endl;
+        arr_flag[c] = false;
+        return;
+      }
+
+      Node_graphs* temp = arr[c];
+      while (temp != nullptr) 
+      {
+        if (!arr_flag[temp->id]) 
+        {
+          find_path_help(temp->id, end, arr_flag, path, t_w + temp->weight, p_c);
+        }
+        temp = temp->next;
+      }
+      arr_flag[c] = false;
+    }
+    
+    void read_csv(const string& filename)//graph edged fro the csv file are read here 
+    {
+      ifstream file(filename);
+      if (!file.is_open()) 
+      {
+        cout << "Failed to open file." << endl;
+        return;
+      }
+
+      string line;
+      getline(file, line);//header line is skipped here
+      while (getline(file, line)) 
+      {
+        stringstream ss(line);
+        char from, to;
+        int weight;
+
+        ss >> from;
+        ss.ignore();
+        ss >> to;
+        ss.ignore();
+        ss >> weight;
+
+        int s_1 = node_id(from);
+        int s_2 = node_id(to);
+        if (s_1 != -1 && s_2 != -1) 
+        {
+           edge_inclusion(s_1, s_2, weight);
+        }
+      }
+      file.close();
+    }
+    
+};      
