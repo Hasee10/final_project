@@ -120,3 +120,23 @@ class Graph
         cout << endl;
       }
     }
+
+    void rer_cong() 
+    {
+      for (int i = 0; i < num; i++) 
+      {
+        for (int j = 0; j < num; j++) 
+        {
+          if (veh_arr[i][j] > 3) 
+          { 
+            veh_arr[i][j] = veh_arr[i][j] - 2;
+            cout << "Rerouting traffic from ";
+            cout << arr_labels[i];
+            cout << " to ";
+            cout << arr_labels[j];
+            cout << " due to congestion.";
+            cout << endl; 
+          }
+        }
+      }
+    }
