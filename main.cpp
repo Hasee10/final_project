@@ -66,3 +66,57 @@ class Graph
          arr_labels[i] = chr;
       }
     }
+
+        void upd_veh(char from, char to, int cou)//here the vehicle count for a road are updated 
+    {
+      int s_1 = 0;
+      int s_2 = 0;
+      
+      s_1 = node_id(from);
+      s_2 = node_id(to);
+      
+      if (s_1 == -1) 
+      {
+        cout << "INVALID ROAD" << endl;
+        return;
+      }
+      if (s_2 == -1)
+      {
+        cout << "INVALID ROAD" << endl;
+        return;
+      }
+      veh_arr[s_1][s_2] += cou;
+    }
+
+    void disp_conges() 
+    {
+      cout << "------ Congestion Status ------" << endl;
+      bool c = false;
+      for (int i = 0; i < num; i++) 
+      {
+        for (int j = 0; j < num; j++) 
+        {
+          if (veh_arr[i][j] > 0) 
+          {
+            c = true;
+            cout << arr_labels[i]; 
+            cout << " to ";
+            cout << arr_labels[j];
+            cout << " -> Vehicles: ";
+            cout << veh_arr[i][j];
+            cout << endl;            
+          }
+        }
+      }
+
+      if (c)
+      {
+        cout << "";
+      }
+      
+      else
+      {
+        cout << "--> No congestion detected <--";
+        cout << endl;
+      }
+    }
