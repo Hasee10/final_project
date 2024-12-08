@@ -14,8 +14,12 @@ The system allows you to:
 - C++ Compiler: I have a C++ compiler on ubuntu, but I normally use VScode
 - CSV Files: You need the CSV files for traffic signal timings and road closure statuses. These files will be read by the program to update the traffic system.
 
-SmartTrafficSimulator/
-├── README.md                   // This file
-├── main.cpp                     // Main C++ source file
-├── traffic_signals.csv           // CSV file for traffic signal timings
-├── road_closures.csv             // CSV file for road closures
+
+These are the things upon which I made my code
+- README.md                   // This file
+- main.cpp                     // Main C++ source file
+- traffic_signals.csv           // CSV file for traffic signal timings
+- road_closures.csv             // CSV file for road closures
+- road_networks.csv
+- vehicles.csv
+- emergency_closures.csv
