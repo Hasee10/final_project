@@ -170,3 +170,39 @@ class Graph
       file.close();
     }
 
+    void block_roads_csv(const string& filename) //road closure data is read and marks roads as blocked
+    {
+      ifstream file(filename);
+      if (!file.is_open()) 
+      {
+        cout << "FAILED to CSV file";
+        cout << endl;
+        return;
+      }
+
+      string line;
+      getline(file, line);//skip header line
+      while (getline(file, line)) 
+      {
+        stringstream ss(line);
+        char start, end;
+        string status;
+
+        ss >> start;
+        ss.ignore();
+        ss >> end;  
+        ss.ignore();  
+        getline(ss, status, ',');//road status is read
+
+        if (status == "Under Repair")
+        {
+            road_blocked(start, end);
+        }
+
+        else if (status == "Blocked") 
+        {
+            road_blocked(start, end);
+        }
+      }
+      file.close();
+    }
