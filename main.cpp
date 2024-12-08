@@ -206,3 +206,36 @@ class Graph
       }
       file.close();
     }
+
+      int node_id(char node)//node label is mapped to its index creating a new node if necessary. 
+    {
+      for (int i = 0; i < num; i++) 
+      {
+        if (arr_labels[i] == node) 
+        {
+           return i;
+         }
+      }
+      arr_labels[num] = node;
+      arr[num] = new Node_graphs(num);
+      return num++;//increment and return the new node index.
+    }
+
+    void edge_inclusion(int a, int b, int c)//adds an edge between two nodes with a given weight. 
+    {
+      if (a >= nodes) 
+      {
+        cout << "Invalid edge." << endl;
+        return;
+      }
+        
+      else if (b >= nodes)
+      {
+        cout << "Invalid edge." << endl;
+        return;
+      }        
+
+      Node_graphs* newNode = new Node_graphs(b, c);//creates a new adjacency list node
+      newNode->next = arr[a]->next;
+      arr[a]->next = newNode;
+    }
