@@ -338,3 +338,88 @@ class Graph
        cout << endl;
       }
     }
+    
+    int get_djik_node(int arr_1[], int arr_2[], bool arr_3[])//finds the next node with the minimum distance in Dijkstra's algorithm. 
+    {
+      int s_1 = 0;
+      int s_2 = 0;
+      
+      s_1 = 1000000;
+      s_2 = -1;
+
+      for (int i = 0; i < num; i++) 
+      {
+        if (!arr_3[i] && (arr_1[i] + arr_2[i]) < s_1) 
+        {
+          s_1 = arr_1[i] + arr_2[i];
+          s_2 = i;
+        }
+      }
+      return s_2;
+    }
+
+    void djik_sea(char start, char end)//dijkstras algorithm is implemented here 
+    {
+       int arr_dist[26];
+       int arr_set[26];
+       bool arr_flag[26] = {false};
+       int parent_num[26];
+       int st = node_id(start);
+       int en = node_id(end);
+  
+       if (st == -1) 
+       {
+         cout << "Invalid node MARKS";
+         cout << endl;
+         return;
+       }
+      
+       if (en == -1)
+       {
+         cout << "Invalid node labels";
+         cout << endl;
+         return;
+       }
+  
+       for (int i = 0; i < num; i++) 
+       {
+         arr_dist[i] = 1000000;
+         arr_set[i] = 0;//Use 0 arr_set for now or a meaningful value.
+         parent_num[i] = -1;
+       }
+       arr_dist[st] = 0;
+
+       for (int cou = 0; cou < num; cou++) 
+       {
+         int u = get_djik_node(arr_dist, arr_set, arr_flag);
+         if (u == -1)//no node can be reached
+         {
+           break;
+         }
+         arr_flag[u] = true;
+
+         if (u == en)
+         {
+           break;//here if we have reached the target node, break
+         }
+
+         Node_graphs* temp = arr[u];//start from the head of the adjacency list
+         while (temp != nullptr)//here I traverse through the adjacency list 
+         {          
+           int v = temp->id;
+           int weight = temp->weight;
+
+           if (ro_blo(u, v))//here I skip if the road is blocked 
+           {
+             temp = temp->next; 
+             continue;
+           }
+
+           if (!arr_flag[v] && arr_dist[u] != 1000000 && arr_dist[u] + weight < arr_dist[v])//relaxation step 
+           {
+             arr_dist[v] = arr_dist[u] + weight;
+             parent_num[v] = u;
+           }
+           temp = temp->next;
+         }
+      }
