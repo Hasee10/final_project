@@ -67,7 +67,7 @@ class Graph
       }
     }
 
-        void upd_veh(char from, char to, int cou)//here the vehicle count for a road are updated 
+    void upd_veh(char from, char to, int cou)//here the vehicle count for a road are updated 
     {
       int s_1 = 0;
       int s_2 = 0;
@@ -141,7 +141,7 @@ class Graph
       }
     }
 
-        void traffc_signal_csv(const string& filename)//green light times is updated after the data is read 
+    void traffc_signal_csv(const string& filename)//green light times is updated after the data is read 
     {
       string line;
       int nodeId;
@@ -207,7 +207,7 @@ class Graph
       file.close();
     }
 
-      int node_id(char node)//node label is mapped to its index creating a new node if necessary. 
+    int node_id(char node)//node label is mapped to its index creating a new node if necessary. 
     {
       for (int i = 0; i < num; i++) 
       {
@@ -240,7 +240,7 @@ class Graph
       arr[a]->next = newNode;
     }
 
-        void road_blocked(char a, char b)//blocks a road between two nodes in the graph
+    void road_blocked(char a, char b)//blocks a road between two nodes in the graph
     {
       int c = 0;
       int d = 0;
@@ -272,7 +272,7 @@ class Graph
         return block_road_arr[from][to];
     }
 
-        void displayblock_road_arr()//displays all blocked roads in the graph. 
+    void displayblock_road_arr()//displays all blocked roads in the graph. 
     {
       cout << "------ Blocked Roads ------";
       cout << endl;
@@ -467,6 +467,7 @@ class Graph
         cout << endl;
       }
     }
+    
     void find_paths(char a, char b)//Finds all paths between two nodes using DFS. 
     {
       bool arr_flag[26] = {false};
