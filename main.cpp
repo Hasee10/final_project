@@ -451,4 +451,20 @@ class Graph
       path_print_all(parent_num[node], parent_num);
       cout << " -> ";
       cout << arr_labels[node];
-    }      
+    }
+
+    void gree_ligh_disp()//green light durations for all intersections are displayed here 
+    {
+      cout << "------Traffic Signal Status------";
+      cout << endl;
+      for (int i = 0; i < num; i++) 
+      {
+        cout << "Intersection ";
+        cout << arr_labels[i];
+        cout << " Green Time : ";
+        cout << green_times[i];
+        cout << " s";
+        cout << endl;
+      }
+    }
+      
