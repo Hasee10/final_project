@@ -140,3 +140,33 @@ class Graph
         }
       }
     }
+
+        void traffc_signal_csv(const string& filename)//green light times is updated after the data is read 
+    {
+      string line;
+      int nodeId;
+      char intersection;
+      int gre_time_in_csv;
+      ifstream file(filename);
+      getline(file, line);//header line skipped
+      while (getline(file, line)) 
+      {
+        stringstream ss(line);
+        ss >> intersection;
+        ss.ignore();
+        ss >> gre_time_in_csv;//green time read
+
+        nodeId = node_id(intersection);//get the node id to the label
+        if (nodeId == -1)
+        {
+           cout << "";
+        }
+        
+        else
+        {
+           green_times[nodeId] = gre_time_in_csv;//green time updated
+        }
+      }
+      file.close();
+    }
+
